@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:head>
+	</h:head>
+	
+	<h:body>
+		<h:panelGroup style="margin: 0 auto">
+			<h:form>
+				<h:panelGrid columns="2" cellpadding="5" style="margin: 200 auto">
+					<h:outputLabel for="login" value="Login:" />
+					<p:inputText id="login" value="#{usuarioController.usuario.login}" required="true" label="login" />
+	
+					<h:outputLabel for="senha" value="Senha:" />
+					<p:password id="senha" value="#{usuarioController.usuario.senha}" required="true" label="senha" />
+	
+					<f:facet name="footer">
+						<p:commandButton value="Entrar" action="#{usuarioController.autenticar}" />
+					</f:facet>
+				</h:panelGrid>
+			</h:form>
+		</h:panelGroup>
+	</h:body>
+	
+</html>
