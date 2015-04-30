@@ -7,6 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
@@ -21,6 +23,7 @@ public class Usuario {
 	@JoinColumn(name="perfil_nome")
 	private PerfilUsuario perfil;
 
+	@NotBlank(message="Digite seu login!")
 	public String getLogin() {
 		return login;
 	}
@@ -28,7 +31,8 @@ public class Usuario {
 	public void setLogin(String login) {
 		this.login = login;
 	}
-
+	
+	@NotBlank(message="Digite sua senha!")
 	public String getSenha() {
 		return senha;
 	}
