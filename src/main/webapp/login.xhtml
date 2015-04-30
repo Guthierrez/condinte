@@ -13,13 +13,13 @@
 				<p:messages id="messages" autoUpdate="true" closable="true" />
 				<h:panelGrid columns="2" cellpadding="5" style="margin: 200 auto">
 					<h:outputLabel for="login" value="Login:" />
-					<p:inputText id="login" value="#{usuarioController.usuario.login}" label="login" />
+					<p:inputText id="login" value="#{loginController.usuario.login}" label="login" />
 	
 					<h:outputLabel for="senha" value="Senha:" />
-					<p:password id="senha" value="#{usuarioController.usuario.senha}" label="senha" />
+					<p:password id="senha" value="#{loginController.usuario.senha}" label="senha" />
 	
 					<f:facet name="footer">
-						<p:commandButton value="Entrar" action="#{usuarioController.autenticar}" />
+						<p:commandButton value="Entrar" action="#{loginController.autenticar}" />
 					</f:facet>
 				</h:panelGrid>
 			</h:form>
