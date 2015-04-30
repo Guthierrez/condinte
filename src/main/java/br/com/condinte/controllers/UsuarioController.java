@@ -44,6 +44,10 @@ public class UsuarioController {
 		}
 		return null;
 	}
+	
+	public String sair(){
+		return "login?faces-redirect=true";
+	}
 
 	public Usuario getUsuario() {
 		return usuario;
