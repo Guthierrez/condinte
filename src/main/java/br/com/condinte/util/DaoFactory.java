@@ -9,14 +9,16 @@ import br.com.condinte.dao.UsuarioDao;
 
 public final class DaoFactory {
 
-	private static final String PERSISTENCE_UNIT_NAME = "ticvip";
+	private static final String PERSISTENCE_UNIT_NAME = "condinte-mysql";
 	private static EntityManagerFactory entityManagerFactoryInstance;
 	
 	private static UsuarioDao usuarioDao;
 	private static PerfilUsuarioDao perfilUsuarioDao;
 	private static PermissaoUsuarioDao permissaoUsuarioDao;
 	
-	private DaoFactory(){}
+	private DaoFactory(){
+		
+	}
 	
 	public static EntityManagerFactory entiManagerFactoryInstance() {
 		
@@ -26,21 +28,21 @@ public final class DaoFactory {
 		return entityManagerFactoryInstance;
 	}
 	
-	public static UsuarioDao eventoDaoInstance() {
+	public static UsuarioDao usuarioDaoInstance() {
 		if(usuarioDao == null)
 			usuarioDao = new UsuarioDao();
 		
 		return usuarioDao;
 	}
 	
-	public static PerfilUsuarioDao PerfilUsuarioDaoInstance() {
+	public static PerfilUsuarioDao perfilUsuarioDaoInstance() {
 		if(perfilUsuarioDao == null)
 			perfilUsuarioDao = new PerfilUsuarioDao();
 		
 		return perfilUsuarioDao;
 	}
 	
-	public static PermissaoUsuarioDao PermissaoUsuarioDaoInstance() {
+	public static PermissaoUsuarioDao permissaoUsuarioDaoInstance() {
 		if(permissaoUsuarioDao == null)
 			permissaoUsuarioDao = new PermissaoUsuarioDao();
 		
