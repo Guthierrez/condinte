@@ -5,23 +5,35 @@
 	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
 	template="/base.xhtml">
 
+
 	<ui:define name="titulo">Cadastro de Permissões</ui:define>
+
+	<f:metadata>
+		<o:viewParam name="id" value="#{permissaoUsuarioController.permissao}" />
+	</f:metadata>
 
 	<ui:define name="conteudo">
 		<h:form>
 			<p:panel header="Cadastro de Permissões">
 				<p:messages autoUpdate="true" />
-				
+
 				<p:panelGrid columns="2" style="margin-top:10px">
-					<h:outputLabel for="nomePerfil" value="Nome do Perfil:" ></h:outputLabel>
-					<p:inputText id="nomePerfil" value="#{permissaoUsuarioController.permissao.nome}"></p:inputText>
-					
-					<h:outputLabel for="descricaoPerfil" value="Descrição:"></h:outputLabel>
-					<p:inputTextarea id="descricaoPerfil" value="#{permissaoUsuarioController.permissao.descricao}" rows="3" cols="25"/>
+					<h:outputLabel for="nomePermissao" value="Nome da Permissão:"></h:outputLabel>
+					<p:inputText id="nomePermissao"
+						value="#{permissaoUsuarioController.permissao.nome}"
+						readonly="#{not empty param.id}">
+					</p:inputText>
+
+					<h:outputLabel for="descricaoPermissao" value="Descrição:"></h:outputLabel>
+					<p:inputTextarea id="descricaoPermissao"
+						value="#{permissaoUsuarioController.permissao.descricao}" rows="3"
+						cols="25" />
 				</p:panelGrid>
-				
-				<br/>
-				<p:commandButton value="Salvar" action="#{permissaoUsuarioController.salvar}" icon="ui-icon-save" update="@form"></p:commandButton>
+
+				<br />
+				<p:commandButton value="Salvar"
+					action="#{permissaoUsuarioController.salvar}" icon="ui-icon-save"
+					update="@form"></p:commandButton>
 			</p:panel>
 		</h:form>
 	</ui:define>

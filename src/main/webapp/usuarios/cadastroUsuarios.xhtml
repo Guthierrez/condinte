@@ -2,14 +2,50 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui" 
-	xmlns:o="http://omnifaces.org/ui"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
 	template="/base.xhtml">
 
 	<ui:define name="titulo">Cadastro Usuarios</ui:define>
 	
+	<f:metadata>
+		<o:viewParam name="id" value="#{usuarioController.usuario}" />
+	</f:metadata>
+
 	<ui:define name="conteudo">
-		<h:outputText value="Cadastro de Usuarios"></h:outputText>
+		<h:form>
+			<p:messages autoUpdate="true"></p:messages>
+			<p:panel header="Cadastro de Usuários">
+				<p:panelGrid columns="2" padding="5">
+					<h:outputLabel for="usuarioLogin" value="Login:"></h:outputLabel>
+					<p:inputText id="usuarioLogin"
+						value="#{usuarioController.usuario.login}"></p:inputText>
+
+					<h:outputLabel for="usuarioSenha" value="Senha:"></h:outputLabel>
+					<p:password id="usuarioSenha"
+						value="#{usuarioController.usuario.senha}"></p:password>
+
+					<h:outputLabel for="usuarioNome" value="Nome:"></h:outputLabel>
+					<p:inputText id="usuarioNome"
+						value="#{usuarioController.usuario.nome}"></p:inputText>
+
+					<h:outputLabel for="usuarioCpf" value="CPF:"></h:outputLabel>
+					<p:inputText id="usuarioCpf"
+						value="#{usuarioController.usuario.cpf}"></p:inputText>
+					
+					<h:outputLabel for="usuarioEmail" value="E-mail:"></h:outputLabel>
+					<p:inputText id="usuarioEmail"
+						value="#{usuarioController.usuario.email}"></p:inputText>
+					
+					<h:outputLabel for="usuarioPerfil" value="Perfil:"></h:outputLabel>
+					<p:selectOneMenu value="#{usuarioController.perfil}" id="usuarioPerfil">
+						<f:selectItems value="#{usuarioController.perfisCadastrados}" var="perfil" itemValue="#{perfil}" itemLabel="#{perfil.nome}" />
+					</p:selectOneMenu>
+					
+				</p:panelGrid>
+				<br/>
+				<p:commandButton value="Salvar" action="#{usuarioController.salvarUsuario}" update="@form"></p:commandButton>
+			</p:panel>
+		</h:form>
 	</ui:define>
 
 </ui:composition>

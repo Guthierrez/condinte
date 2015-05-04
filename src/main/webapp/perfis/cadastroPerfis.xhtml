@@ -2,14 +2,46 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui" 
-	xmlns:o="http://omnifaces.org/ui"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
 	template="/base.xhtml">
 
 	<ui:define name="titulo">Cadastro de Perfis</ui:define>
 	
+	<f:metadata>
+		<o:viewParam name="id" value="#{perfilUsuarioController.perfil}" />
+		<f:event type="preRenderView" listener="#{perfilUsuarioController.teste(param.id)}"/>    
+	</f:metadata>
+
 	<ui:define name="conteudo">
-		<h:outputText value="Cadastro de Perfis"></h:outputText>
+		<h:form>
+			<p:messages autoUpdate="true" id="messages" />
+			<p:panel header="Cadastro de Perfis">
+				<p:panelGrid columns="2" style="margin-top:10px">
+					<h:outputLabel for="nomePerfil" value="Nome do Perfil:"></h:outputLabel>
+					<p:inputText id="nomePerfil"
+						value="#{perfilUsuarioController.perfil.nome}"></p:inputText>
+
+					<h:outputLabel for="descricaoPerfil" value="Descrição:"></h:outputLabel>
+					<p:inputTextarea id="descricaoPerfil"
+						value="#{perfilUsuarioController.perfil.descricao}" rows="3"
+						cols="25" />
+
+					<h:outputLabel for="permissoesPerfil" value="Permissões:"></h:outputLabel>
+					<p:pickList id="permissoesPerfil"
+						value="#{perfilUsuarioController.permissoesPickList}"
+						var="permissao" itemValue="#{permissao}"
+						itemLabel="#{permissao.nome}">
+						<o:converter converterId="omnifaces.ListConverter"
+							list="#{perfilUsuarioController.permissoesPickList.source}" />
+							<p:ajax event="select" listener="#{perfilUsuarioController.onSelect}" update="messages" />
+					</p:pickList>
+				</p:panelGrid>
+
+				<br />
+				<p:commandButton action="#{perfilUsuarioController.salvarPerfil}"
+					value="Salvar" icon="ui-icon-save" update="@form"></p:commandButton>
+			</p:panel>
+		</h:form>
 	</ui:define>
 
 </ui:composition>

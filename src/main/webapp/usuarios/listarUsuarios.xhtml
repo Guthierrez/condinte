@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	template="/base.xhtml">
+
+	<ui:define name="titulo">Cadastro de Usuários</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form>
+			<p:panel header="Permissões Cadastradas">
+				<p:messages autoUpdate="true" />
+
+				<p:dataTable var="usuario" value="#{usuarioController.allUsuarios}" >
+					<p:column headerText="Login">
+						<h:outputText value="#{usuario.login}"/>
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText value="#{usuario.nome}"/>
+					</p:column>
+					<p:column headerText="E-mail">
+						<h:outputText value="#{usuario.email}" />
+					</p:column>
+					<p:column headerText="CPF">
+						<h:outputText value="#{usuario.cpf}" />
+					</p:column>
+					<p:column headerText="Perfil">
+						<h:outputText value="#{usuario.perfil.nome}" />
+					</p:column>
+					<p:column headerText="Ações">
+						<p:button title="Editar" icon="ui-icon-pencil" outcome="cadastroUsuarios">
+							<f:param name="id" value="#{usuario.id}"  />
+						</p:button>
+						<p:commandButton title="Excluir" icon="ui-icon-trash"></p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
