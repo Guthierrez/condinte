@@ -11,7 +11,7 @@ public class JPAUtil {
 	
 	static {
 		try {
-			emf = Persistence.createEntityManagerFactory("condinte-mysql");
+			emf = Persistence.createEntityManagerFactory("condinte-psql");
 		}catch(Exception e){
 			e.printStackTrace();
 		}

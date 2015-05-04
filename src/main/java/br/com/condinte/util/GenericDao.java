@@ -91,7 +91,13 @@ public abstract class GenericDao<T, PK> {
 	}
 	
 	public void commit(){
-		this.entityManager.getTransaction().commit();
+		if(this.entityManager.getTransaction().isActive()){
+			try{
+				this.entityManager.getTransaction().commit();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public void close(){
@@ -100,7 +106,9 @@ public abstract class GenericDao<T, PK> {
 	}
 	
 	public void rollBack(){
-		this.entityManager.getTransaction().rollback();
+		if(this.entityManager.getTransaction().isActive()){
+			this.entityManager.getTransaction().rollback();
+		}
 	}
 	
 	public EntityManager getEntityManager(){
