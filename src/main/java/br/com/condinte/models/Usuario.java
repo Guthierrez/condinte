@@ -2,18 +2,28 @@ package br.com.condinte.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.br.CPF;
+
+import com.sun.istack.internal.NotNull;
 
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
-
+	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+
+	@Column(unique = true, nullable = false)
 	private String login;
 
 	@Column(nullable = false)
@@ -29,10 +39,18 @@ public class Usuario {
 	private String email;
 
 	@ManyToOne
-	@JoinColumn(name = "perfil_nome")
+	@JoinColumn(name = "perfil_id")
 	private PerfilUsuario perfil;
 
-	@NotBlank(message = "Digite seu login!")
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	@NotBlank
 	public String getLogin() {
 		return login;
 	}
@@ -41,7 +59,7 @@ public class Usuario {
 		this.login = login;
 	}
 
-	@NotBlank(message = "Digite sua senha!")
+	@NotBlank
 	public String getSenha() {
 		return senha;
 	}
@@ -49,7 +67,9 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
+	
+	@NotBlank
+	@CPF
 	public String getCpf() {
 		return cpf;
 	}
@@ -57,7 +77,8 @@ public class Usuario {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
+	
+	@NotBlank
 	public String getNome() {
 		return nome;
 	}
@@ -66,6 +87,8 @@ public class Usuario {
 		this.nome = nome;
 	}
 
+	@NotBlank
+	@Email
 	public String getEmail() {
 		return email;
 	}
@@ -73,7 +96,8 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	
+	@NotNull
 	public PerfilUsuario getPerfil() {
 		return perfil;
 	}
