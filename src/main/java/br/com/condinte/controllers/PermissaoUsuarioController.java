@@ -1,5 +1,7 @@
 package br.com.condinte.controllers;
 
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -19,8 +21,13 @@ public class PermissaoUsuarioController {
 		permissaoUsuarioDao = DaoFactory.permissaoUsuarioDaoInstance();
 	}
 	
-	public void salvar(){
-		permissaoUsuarioDao.insert(permissao);
+	public List<PermissaoUsuario> getAllPermissoes() {
+		return permissaoUsuarioDao.getLista();
+	}
+	
+	public String salvar(){
+		permissaoUsuarioDao.update(permissao);
+		return "listarPermissoes?faces-redirect=true";
 	}
 	
 	public PermissaoUsuario getPermissao() {
@@ -30,4 +37,5 @@ public class PermissaoUsuarioController {
 	public void setPermissao(PermissaoUsuario permissao) {
 		this.permissao = permissao;
 	}
+
 }

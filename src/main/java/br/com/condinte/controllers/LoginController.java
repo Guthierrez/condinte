@@ -4,7 +4,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.persistence.EntityManager;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -12,22 +11,16 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 
 import br.com.condinte.models.Usuario;
-import br.com.condinte.util.JPAUtil;
 
 @ManagedBean
 @SessionScoped
 public class LoginController {
 	private Usuario usuario;
 	private Subject usuarioCorrente;
-	//codigo temporario somente para inicializar o hibernate
-	@SuppressWarnings("unused")
-	private static EntityManager manager;
 	
 	public LoginController(){
 		this.usuario = new Usuario();
 		this.usuarioCorrente = SecurityUtils.getSubject();
-		//codigo temporario somente para inicializar o hibernate
-		manager = JPAUtil.getEntityManager();
 	}
 	
 	public String autenticar(){
