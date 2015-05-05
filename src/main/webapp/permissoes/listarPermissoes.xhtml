@@ -12,18 +12,23 @@
 			<p:panel header="Permissões Cadastradas">
 				<p:messages autoUpdate="true" />
 
-				<p:dataTable var="permissao" value="#{permissaoUsuarioController.allPermissoes}" >
+				<p:dataTable var="permissao"
+					value="#{permissaoUsuarioController.allPermissoes}">
 					<p:column headerText="Nome">
-						<h:outputText value="#{permissao.nome}"/>
+						<h:outputText value="#{permissao.nome}" />
 					</p:column>
 					<p:column headerText="Descrição">
 						<h:outputText value="#{permissao.descricao}" />
 					</p:column>
 					<p:column headerText="Ações">
-						<p:button value="Editar" icon="ui-icon-pencil" outcome="cadastroPermissoes">
-							<f:param name="id" value="#{permissao.id}"  />
+						<p:button value="Editar" icon="ui-icon-pencil"
+							outcome="cadastroPermissoes">
+							<f:param name="id" value="#{permissao.id}" />
 						</p:button>
-						<p:commandButton value="Excluir" icon="ui-icon-trash"></p:commandButton>
+						<p:commandButton value="Excluir" icon="ui-icon-trash"
+							action="#{permissaoUsuarioController.removerPermissao(permissao)}"
+							update="@form">
+						</p:commandButton>
 					</p:column>
 				</p:dataTable>
 

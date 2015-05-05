@@ -12,12 +12,12 @@
 			<p:panel header="Permissões Cadastradas">
 				<p:messages autoUpdate="true" />
 
-				<p:dataTable var="usuario" value="#{usuarioController.allUsuarios}" >
+				<p:dataTable var="usuario" value="#{usuarioController.allUsuarios}">
 					<p:column headerText="Login">
-						<h:outputText value="#{usuario.login}"/>
+						<h:outputText value="#{usuario.login}" />
 					</p:column>
 					<p:column headerText="Nome">
-						<h:outputText value="#{usuario.nome}"/>
+						<h:outputText value="#{usuario.nome}" />
 					</p:column>
 					<p:column headerText="E-mail">
 						<h:outputText value="#{usuario.email}" />
@@ -29,10 +29,14 @@
 						<h:outputText value="#{usuario.perfil.nome}" />
 					</p:column>
 					<p:column headerText="Ações">
-						<p:button title="Editar" icon="ui-icon-pencil" outcome="cadastroUsuarios">
-							<f:param name="id" value="#{usuario.id}"  />
+						<p:button title="Editar" icon="ui-icon-pencil"
+							outcome="cadastroUsuarios">
+							<f:param name="id" value="#{usuario.id}" />
 						</p:button>
-						<p:commandButton title="Excluir" icon="ui-icon-trash"></p:commandButton>
+						<p:commandButton title="Excluir" icon="ui-icon-trash"
+							action="#{usuarioController.removerUsuario(usuario)}"
+							update="@form">
+						</p:commandButton>
 					</p:column>
 				</p:dataTable>
 

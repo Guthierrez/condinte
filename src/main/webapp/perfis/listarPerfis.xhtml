@@ -12,7 +12,8 @@
 			<p:panel header="Perfis Cadastrados">
 				<p:messages autoUpdate="true" />
 
-				<p:dataTable var="perfil" value="#{perfilUsuarioController.allPerfis}" >
+				<p:dataTable var="perfil"
+					value="#{perfilUsuarioController.allPerfis}">
 					<p:column headerText="Nome">
 						<h:outputText value="#{perfil.nome}" />
 					</p:column>
@@ -21,14 +22,19 @@
 					</p:column>
 					<p:column headerText="Permissões">
 						<p:selectOneMenu>
-							<f:selectItems value="#{perfil.permissoes}" var="permissao" itemLabel="#{permissao.nome}" />
+							<f:selectItems value="#{perfil.permissoes}" var="permissao"
+								itemLabel="#{permissao.nome}" />
 						</p:selectOneMenu>
 					</p:column>
 					<p:column headerText="Ações">
-						<p:button value="Editar" icon="ui-icon-pencil" outcome="cadastroPerfis">
+						<p:button value="Editar" icon="ui-icon-pencil"
+							outcome="cadastroPerfis">
 							<f:param name="id" value="#{perfil.id}" />
 						</p:button>
-						<p:commandButton value="Excluir" icon="ui-icon-trash"></p:commandButton>
+						<p:commandButton value="Excluir" icon="ui-icon-trash"
+							action="#{perfilUsuarioController.removerPerfil(perfil)}"
+							update="@form">
+						</p:commandButton>
 					</p:column>
 				</p:dataTable>
 

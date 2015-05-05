@@ -19,7 +19,7 @@
 					<p:password id="senha" value="#{loginController.usuario.senha}" label="senha" />
 	
 					<f:facet name="footer">
-						<p:commandButton value="Entrar" action="#{loginController.autenticar}" />
+						<p:commandButton value="Entrar" action="#{loginController.autenticar}" update="@form"/>
 					</f:facet>
 				</h:panelGrid>
 			</h:form>
