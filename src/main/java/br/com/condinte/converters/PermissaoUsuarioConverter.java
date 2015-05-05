@@ -16,7 +16,7 @@ public class PermissaoUsuarioConverter implements Converter{
 	private PermissaoUsuarioDao permissaoUsuarioDao = DaoFactory.permissaoUsuarioDaoInstance();
 
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		PermissaoUsuario permissao = null;
+		PermissaoUsuario permissao = new PermissaoUsuario();
 		if (value != null && value != "") {
 			permissao = permissaoUsuarioDao.findById(Integer.valueOf(value));
 		}

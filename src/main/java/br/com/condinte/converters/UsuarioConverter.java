@@ -15,7 +15,7 @@ public class UsuarioConverter implements Converter {
 	private UsuarioDao usuarioDao = DaoFactory.usuarioDaoInstance();
 
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		Usuario usuario = null;
+		Usuario usuario = new Usuario();
 		if (value != null && value != "") {
 			usuario = usuarioDao.findById(Integer.valueOf(value));
 		}

@@ -16,7 +16,7 @@ public class PerfilUsuarioConverter implements Converter {
 	
 	public Object getAsObject(FacesContext context, UIComponent component,
 			String value) {
-		PerfilUsuario perfil = null;
+		PerfilUsuario perfil = new PerfilUsuario();
 		if (value != null && value != "") {
 			perfil = perfilUsuarioDao.findById(Integer.valueOf(value));
 		}
