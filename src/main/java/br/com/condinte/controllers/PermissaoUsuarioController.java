@@ -25,9 +25,13 @@ public class PermissaoUsuarioController {
 		return permissaoUsuarioDao.getLista();
 	}
 	
-	public String salvar(){
+	public String salvarPermissao(){
 		permissaoUsuarioDao.update(permissao);
 		return "listarPermissoes?faces-redirect=true";
+	}
+	
+	public void removerPermissao(PermissaoUsuario permissao){
+		permissaoUsuarioDao.delete(permissao, permissao.getId());	
 	}
 	
 	public PermissaoUsuario getPermissao() {

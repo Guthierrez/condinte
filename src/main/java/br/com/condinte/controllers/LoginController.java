@@ -1,16 +1,16 @@
 package br.com.condinte.controllers;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 
 import br.com.condinte.models.Usuario;
+import br.com.condinte.util.FacesUtil;
 
 @ManagedBean
 @SessionScoped
@@ -30,9 +30,8 @@ public class LoginController {
 				token.setRememberMe(false);
 				usuarioCorrente.login(token);
 				return "home?faces-redirect=true";
-			}catch(UnknownAccountException usuarioNaoCadastro){
-				FacesContext.getCurrentInstance().addMessage(null, 
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro! Login ou senha incorretos.", null));
+			}catch(UnknownAccountException | IncorrectCredentialsException incorret){
+				FacesUtil.addErrorMessage("Erro! Login ou senha incorretos.");
 			}
 		}
 		return null;

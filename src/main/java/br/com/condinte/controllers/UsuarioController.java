@@ -32,10 +32,16 @@ public class UsuarioController {
 		return usuarioDao.getLista();
 	}
 	
-	public void salvarUsuario(){
+	public String salvarUsuario(){
 		usuario.setPerfil(perfil);
 		usuarioDao.update(usuario);
+		return "listarUsuarios?faces-redirect=true";
 	}
+	
+	public void removerUsuario(Usuario usuario){
+		usuarioDao.delete(usuario, usuario.getId());
+	}
+	
 
 	public Usuario getUsuario() {
 		return usuario;

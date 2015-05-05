@@ -47,6 +47,10 @@ public class PerfilUsuarioController {
 		return "/home?faces-redirect=true";
 	}
 	
+	public void removerPerfil(PerfilUsuario perfil){
+		perfilUsuarioDao.delete(perfil, perfil.getId());
+	}
+	
 	public void teste(String id){
 		if (id != null && id != ""){
 			List<PermissaoUsuario> permissoes = perfilUsuarioDao.findById(Integer.valueOf(id)).getPermissoes();
